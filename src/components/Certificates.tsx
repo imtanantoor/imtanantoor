@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Certificate } from "@/lib/strapi/types";
 import { getCertificates } from "@/lib/strapi/queries";
-import { formatDate, getImageUrl } from "@/lib/strapi/utils";
+import { formatDate, formatDateRange, getImageUrl } from "@/lib/strapi/utils";
 import Section from "./Section";
 import Container, { SubContainer } from "./Container";
 import { ACCENT_COLOR } from "@/lib/theme";
@@ -25,6 +25,14 @@ export default function Certificates() {
           setCertificates([
             {
               id: 1,
+              name: "Generative AI Mastermind",
+              issuer: "Outskill",
+              issueDate: new Date("2025-09-01").toISOString(),
+              endDate: undefined, // undefined means "Present"
+              publishedAt: new Date().toISOString(),
+            },
+            {
+              id: 2,
               name: "AWS Cloud Practitioner",
               issuer: "Amazon Web Services",
               issueDate: new Date().toISOString(),
@@ -38,6 +46,14 @@ export default function Certificates() {
         setCertificates([
           {
             id: 1,
+            name: "Generative AI Mastermind",
+            issuer: "Outskill",
+            issueDate: new Date("2025-09-01").toISOString(),
+            endDate: undefined, // undefined means "Present"
+            publishedAt: new Date().toISOString(),
+          },
+          {
+            id: 2,
             name: "AWS Cloud Practitioner",
             issuer: "Amazon Web Services",
             issueDate: new Date().toISOString(),
@@ -93,7 +109,7 @@ export default function Certificates() {
               </h3>
               <div className="mb-2 text-sm" style={{ color: "var(--text-secondary)" }}>{cert.issuer}</div>
               <div className="text-sm mb-5" style={{ color: "var(--text-muted)" }}>
-                {formatDate(cert.issueDate)}
+                {cert.endDate ? formatDateRange(cert.issueDate, cert.endDate) : formatDate(cert.issueDate)}
               </div>
               {cert.credentialUrl && (
                 <a

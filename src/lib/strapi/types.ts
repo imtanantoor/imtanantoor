@@ -44,6 +44,7 @@ export interface Certificate {
   name: string;
   issuer: string;
   issueDate: string;
+  endDate?: string;
   credentialUrl?: string;
   logo?: StrapiImage;
   publishedAt: string;
