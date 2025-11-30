@@ -8,6 +8,7 @@ import { getExperience } from "@/lib/strapi/queries";
 import { formatDateRange, getImageUrl } from "@/lib/strapi/utils";
 import Section from "./Section";
 import Container, { SubContainer } from "./Container";
+import { ACCENT_COLOR } from "@/lib/theme";
 
 export default function Experience() {
   const [experiences, setExperiences] = useState<ExperienceType[]>([]);
@@ -157,7 +158,7 @@ export default function Experience() {
   }, []);
 
   return (
-    <Section id="experience" backgroundColor="gray">
+    <Section id="experience" className="text-white" style={{ backgroundColor: ACCENT_COLOR }}>
       <Container maxWidth="7xl">
         <SubContainer>
           <motion.h2
@@ -165,12 +166,12 @@ export default function Experience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl sm:text-6xl font-bold text-gray-800 mb-20 font-heading text-left"
+            className="text-5xl sm:text-6xl font-bold text-white mb-20 font-heading text-left"
           >
             Experience
           </motion.h2>
           {loading ? (
-          <div className="text-left text-gray-500">Loading experience...</div>
+          <div className="text-left text-white opacity-80">Loading experience...</div>
         ) : (
           <div className="space-y-10">
           {experiences.map((exp, index) => (
@@ -180,10 +181,10 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex gap-6 pb-10 border-b border-gray-200 last:border-0"
+              className="flex gap-6 pb-10 border-b border-white/20 last:border-0"
             >
               {exp.logo && (
-                <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-white border border-gray-200 overflow-hidden p-2">
+                <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-white/10 border border-white/20 overflow-hidden p-2">
                   <Image
                     src={getImageUrl(exp.logo)}
                     alt={exp.company}
@@ -194,16 +195,16 @@ export default function Experience() {
                 </div>
               )}
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2 font-heading">
+                <h3 className="text-2xl font-bold text-white mb-2 font-heading">
                   {exp.role}
                 </h3>
-                <div className="text-lg text-gray-600 mb-2">{exp.company}</div>
-                <div className="text-gray-500 mb-1 text-sm">
+                <div className="text-lg text-white mb-2 opacity-90">{exp.company}</div>
+                <div className="text-white mb-1 text-sm opacity-80">
                   {formatDateRange(exp.startDate, exp.endDate)}
                 </div>
-                <div className="text-gray-400 text-sm mb-3">{exp.location}</div>
+                <div className="text-white text-sm mb-3 opacity-70">{exp.location}</div>
                 {exp.description && (
-                  <p className="text-gray-600 mt-4 leading-relaxed text-[15px]">
+                  <p className="text-white mt-4 leading-relaxed text-[15px] opacity-90">
                     {exp.description}
                   </p>
                 )}
@@ -212,7 +213,7 @@ export default function Experience() {
                     {exp.skills.slice(0, 5).map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-xs rounded-full font-medium"
+                        className="px-3 py-1 bg-white/20 border border-white/30 text-white text-xs rounded-full font-medium"
                       >
                         {skill}
                       </span>

@@ -19,9 +19,10 @@ export async function generateStaticParams() {
 export default async function PortfolioDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const project = await getPortfolioBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getPortfolioBySlug(slug);
 
   if (!project) {
     notFound();

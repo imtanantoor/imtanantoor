@@ -11,7 +11,9 @@ const techStack = [
   "Node.js",
   "TypeScript",
   "MongoDB",
+  "PostgreSQL",
   "Express",
+  "Strapi",
   "AWS",
   "CI/CD",
 ];

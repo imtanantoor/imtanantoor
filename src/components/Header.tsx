@@ -15,10 +15,12 @@ export default function Header() {
   return (
     <>
       {/* Scroll Progress Indicator */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-0.5 z-60 origin-left"
-        style={{ scaleX, backgroundColor: ACCENT_COLOR }}
-      />
+      <div className="fixed top-0 left-0 right-0 h-1 z-60 bg-white/50 backdrop-blur-sm">
+        <motion.div
+          className="h-full origin-left"
+          style={{ scaleX, backgroundColor: ACCENT_COLOR }}
+        />
+      </div>
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -28,9 +30,10 @@ export default function Header() {
         <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between w-full">
           <Link 
             href="/" 
-            className="text-xl font-medium text-gray-800 uppercase tracking-tight hover:text-gray-600 transition-colors"
+            className="text-xl font-bold uppercase tracking-tight hover:opacity-80 transition-colors"
           >
-            IT.
+            <span className="text-gray-800">I</span>
+            <span style={{ color: ACCENT_COLOR }}>T.</span>
           </Link>
           <div className="flex items-center gap-8 sm:gap-12">
             <Link
