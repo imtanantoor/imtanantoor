@@ -1,36 +1,205 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
+
+A minimalistic, professional portfolio website built with Next.js 16, React 19, TypeScript, and Strapi CMS. Features a clean grayscale design with subtle animations, reflecting a competitive, disciplined, and creative personality.
+
+## Features
+
+- **Modern Stack**: Next.js 16, React 19, TypeScript, Tailwind CSS v4
+- **Headless CMS**: Strapi integration for easy content management
+- **Responsive Design**: Mobile-first, works across all devices
+- **Performance**: Optimized images, static generation, and incremental regeneration
+- **Animations**: Subtle micro-interactions using Framer Motion
+- **SEO Optimized**: Proper metadata and semantic HTML
+
+## Tech Stack
+
+- **Frontend**: Next.js 16, React 19, TypeScript
+- **Styling**: Tailwind CSS v4
+- **CMS**: Strapi v5
+- **Animations**: Framer Motion
+- **Icons**: React Icons
+- **Deployment**: Ready for Vercel, AWS, or any Node.js hosting
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+ 
+- Yarn (package manager)
+- Strapi will use SQLite by default (can be configured for PostgreSQL)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd imtanantoor
+   ```
+
+2. **Install dependencies**
+   ```bash
+   # Install Next.js dependencies
+   yarn install
+   
+   # Install Strapi dependencies
+   cd strapi
+   yarn install
+   cd ..
+   ```
+
+3. **Set up environment variables**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337/api
+   ```
+
+4. **Start Strapi CMS**
+   ```bash
+   cd strapi
+   yarn develop
+   ```
+   
+   - Open http://localhost:1337/admin
+   - Create an admin account
+   - Follow the setup guide in `strapi/CONTENT_TYPES_SETUP.md` to create content types
+
+5. **Start Next.js development server**
+   ```bash
+   # In the root directory
+   yarn dev
+   ```
+   
+   - Open http://localhost:3000
+
+## Project Structure
+
+```
+imtanantoor/
+├── src/
+│   ├── app/              # Next.js App Router pages
+│   ├── components/        # React components
+│   └── lib/
+│       └── strapi/        # Strapi API integration
+├── strapi/               # Strapi CMS
+│   ├── src/
+│   │   └── api/         # Content types (created via admin)
+│   └── config/          # Strapi configuration
+└── public/              # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content Types
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The following content types need to be created in Strapi:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Portfolio Project** - Collection type for portfolio projects
+2. **Experience** - Collection type for work experience
+3. **Certificate** - Collection type for certifications
+4. **Site Settings** - Single type for site configuration
+5. **Blog Post** - Collection type (for future blog feature)
 
-## Learn More
+See `strapi/CONTENT_TYPES_SETUP.md` for detailed setup instructions.
 
-To learn more about Next.js, take a look at the following resources:
+## Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Running in Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Terminal 1: Start Strapi
+cd strapi && yarn develop
 
-## Deploy on Vercel
+# Terminal 2: Start Next.js
+yarn dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Building for Production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Build Next.js
+yarn build
+
+# Start production server
+yarn start
+```
+
+## Customization
+
+### Colors
+
+The grayscale color palette is defined in `src/app/globals.css`:
+- Lightest: `#F8F9FA`
+- Darkest: `#212529`
+
+### Fonts
+
+- Primary: Inter (body text)
+- Headings: Poppins (bold, disciplined look)
+
+Configured in `src/app/layout.tsx`
+
+### Content
+
+All content is managed through Strapi CMS. No code changes needed to update:
+- Portfolio projects
+- Work experience
+- Certificates
+- Hero section content
+- Social links
+
+## Deployment
+
+### Strapi Deployment
+
+Strapi can be deployed separately:
+- **Strapi Cloud**: Easiest option
+- **Self-hosted**: VPS, AWS, Railway, etc.
+- Update `NEXT_PUBLIC_STRAPI_API_URL` in production environment
+
+### Next.js Deployment
+
+- **Vercel**: Recommended, automatic deployments
+- **AWS**: Use Amplify or EC2
+- **Any Node.js hosting**: Build and deploy
+
+### Environment Variables
+
+Make sure to set:
+- `NEXT_PUBLIC_STRAPI_API_URL` - Your Strapi API URL
+
+## Features in Detail
+
+### Portfolio Section
+- Grid layout of project cards
+- Individual project detail pages
+- Tech stack tags
+- Impact metrics
+- Image galleries
+
+### Experience Timeline
+- Chronological work experience
+- Company logos
+- Skills and achievements
+- Responsive card layout
+
+### Contact Form
+- Ready for integration with:
+  - Formspree
+  - EmailJS
+  - Custom API route
+  - SendGrid/Mailgun
+
+## Future Enhancements
+
+- Blog functionality (structure already prepared)
+- Dark mode toggle
+- Portfolio filtering by category
+- Search functionality
+- Analytics integration
+
+## License
+
+Private project - All rights reserved
+
+## Support
+
+For issues or questions, please open an issue in the repository.
