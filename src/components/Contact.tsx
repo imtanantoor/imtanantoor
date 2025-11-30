@@ -38,7 +38,8 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl sm:text-6xl font-bold text-gray-800 mb-20 font-heading text-left"
+            className="text-5xl sm:text-6xl font-bold mb-20 font-heading text-left"
+            style={{ color: "var(--foreground)" }}
           >
             Get in Touch
           </motion.h2>
@@ -50,10 +51,10 @@ export default function Contact() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-3xl font-bold text-gray-800 mb-4 font-heading">
+            <h3 className="text-3xl font-bold mb-4 font-heading" style={{ color: "var(--foreground)" }}>
               Let's work together
             </h3>
-            <p className="text-gray-500 mb-8 leading-relaxed text-[15px]">
+            <p className="mb-8 leading-relaxed text-[15px]" style={{ color: "var(--text-secondary)" }}>
               Whether you're scaling to millions of users or solving complex
               infrastructure challenges, let's discuss how we can work together.
             </p>
@@ -62,7 +63,10 @@ export default function Contact() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 flex items-center justify-center text-gray-800 hover:text-gray-600 transition-colors"
+                className="w-11 h-11 flex items-center justify-center transition-colors"
+                style={{ color: "var(--foreground)" }}
+                onMouseEnter={(e) => e.currentTarget.style.color = "var(--text-secondary)"}
+                onMouseLeave={(e) => e.currentTarget.style.color = "var(--foreground)"}
                 aria-label="LinkedIn"
               >
                 <FaLinkedin size={22} />
@@ -71,14 +75,20 @@ export default function Contact() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 flex items-center justify-center text-gray-800 hover:text-gray-600 transition-colors"
+                className="w-11 h-11 flex items-center justify-center transition-colors"
+                style={{ color: "var(--foreground)" }}
+                onMouseEnter={(e) => e.currentTarget.style.color = "var(--text-secondary)"}
+                onMouseLeave={(e) => e.currentTarget.style.color = "var(--foreground)"}
                 aria-label="GitHub"
               >
                 <FaGithub size={22} />
               </a>
               <a
                 href="mailto:contact@example.com"
-                className="w-11 h-11 flex items-center justify-center text-gray-800 hover:text-gray-600 transition-colors"
+                className="w-11 h-11 flex items-center justify-center transition-colors"
+                style={{ color: "var(--foreground)" }}
+                onMouseEnter={(e) => e.currentTarget.style.color = "var(--text-secondary)"}
+                onMouseLeave={(e) => e.currentTarget.style.color = "var(--foreground)"}
                 aria-label="Email"
               >
                 <FaEnvelope size={22} />
@@ -95,14 +105,15 @@ export default function Contact() {
             className="space-y-4"
           >
             {submitted && (
-              <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm mb-4">
+              <div className="p-3 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg text-green-800 dark:text-green-300 text-sm mb-4">
                 Thank you! Your message has been sent.
               </div>
             )}
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-2 tracking-wide"
+                className="block text-sm font-medium mb-2 tracking-wide"
+                style={{ color: "var(--foreground)" }}
               >
                 Name
               </label>
@@ -114,8 +125,13 @@ export default function Contact() {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent bg-white transition-all"
-                style={{ "--tw-ring-color": ACCENT_COLOR } as React.CSSProperties}
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                style={{
+                  borderColor: "var(--border-color)",
+                  backgroundColor: "var(--card-bg)",
+                  color: "var(--foreground)",
+                  "--tw-ring-color": ACCENT_COLOR,
+                } as React.CSSProperties}
                 onFocus={(e) => {
                   e.target.style.borderColor = ACCENT_COLOR;
                   e.target.style.boxShadow = `0 0 0 2px ${ACCENT_COLOR}40`;
@@ -129,7 +145,8 @@ export default function Contact() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-2 tracking-wide"
+                className="block text-sm font-medium mb-2 tracking-wide"
+                style={{ color: "var(--foreground)" }}
               >
                 Email
               </label>
@@ -141,8 +158,13 @@ export default function Contact() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent bg-white transition-all"
-                style={{ "--tw-ring-color": ACCENT_COLOR } as React.CSSProperties}
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                style={{
+                  borderColor: "var(--border-color)",
+                  backgroundColor: "var(--card-bg)",
+                  color: "var(--foreground)",
+                  "--tw-ring-color": ACCENT_COLOR,
+                } as React.CSSProperties}
                 onFocus={(e) => {
                   e.target.style.borderColor = ACCENT_COLOR;
                   e.target.style.boxShadow = `0 0 0 2px ${ACCENT_COLOR}40`;
@@ -156,7 +178,8 @@ export default function Contact() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700 mb-2 tracking-wide"
+                className="block text-sm font-medium mb-2 tracking-wide"
+                style={{ color: "var(--foreground)" }}
               >
                 Message
               </label>
@@ -168,8 +191,13 @@ export default function Contact() {
                 onChange={(e) =>
                   setFormData({ ...formData, message: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent resize-none bg-white transition-all"
-                style={{ "--tw-ring-color": ACCENT_COLOR } as React.CSSProperties}
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent resize-none transition-all"
+                style={{
+                  borderColor: "var(--border-color)",
+                  backgroundColor: "var(--card-bg)",
+                  color: "var(--foreground)",
+                  "--tw-ring-color": ACCENT_COLOR,
+                } as React.CSSProperties}
                 onFocus={(e) => {
                   e.target.style.borderColor = ACCENT_COLOR;
                   e.target.style.boxShadow = `0 0 0 2px ${ACCENT_COLOR}40`;

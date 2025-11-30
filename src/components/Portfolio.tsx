@@ -100,14 +100,15 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl sm:text-6xl font-bold text-gray-800 mb-20 font-heading text-left"
+            className="text-5xl sm:text-6xl font-bold mb-20 font-heading text-left"
+            style={{ color: "var(--foreground)" }}
           >
             Portfolio
           </motion.h2>
           {loading ? (
-          <div className="text-left text-gray-400">Loading projects...</div>
+          <div className="text-left" style={{ color: "var(--text-muted)" }}>Loading projects...</div>
         ) : projects.length === 0 ? (
-          <div className="text-left text-gray-400">
+          <div className="text-left" style={{ color: "var(--text-muted)" }}>
             No projects available yet. Check back soon!
           </div>
         ) : (

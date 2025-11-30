@@ -8,10 +8,10 @@ interface SectionProps {
   style?: CSSProperties;
 }
 
-const backgroundClasses = {
-  white: "bg-white",
-  gray: "bg-gray-50",
-  dark: "bg-gray-800",
+const backgroundStyles: Record<"white" | "gray" | "dark", CSSProperties> = {
+  white: { backgroundColor: "var(--background)" },
+  gray: { backgroundColor: "var(--section-gray-bg)" },
+  dark: { backgroundColor: "var(--gray-800)" },
 };
 
 export default function Section({
@@ -21,14 +21,14 @@ export default function Section({
   backgroundColor = "white",
   style,
 }: SectionProps) {
-  // If style is provided, don't use backgroundColor class
-  const bgClass = style ? "" : backgroundClasses[backgroundColor];
+  // Merge custom style with background style if no custom style is provided
+  const sectionStyle = style || backgroundStyles[backgroundColor];
   
   return (
     <section
       id={id}
-      className={`py-24 md:py-32 ${bgClass} ${className}`}
-      style={style}
+      className={`py-24 md:py-32 ${className}`}
+      style={sectionStyle}
     >
       {children}
     </section>

@@ -41,7 +41,8 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl sm:text-6xl font-bold text-gray-800 mb-20 font-heading text-left"
+            className="text-5xl sm:text-6xl font-bold mb-20 font-heading text-left"
+            style={{ color: "var(--foreground)" }}
           >
             Services
           </motion.h2>
@@ -57,13 +58,13 @@ export default function Services() {
             >
               <div className="mb-6">
                 <div className="w-16 h-16 flex items-center justify-start mb-6">
-                  <service.icon className="text-3xl text-gray-800 group-hover:scale-110 transition-transform duration-300" />
+                  <service.icon className="text-3xl group-hover:scale-110 transition-transform duration-300" style={{ color: "var(--foreground)" }} />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4 font-heading">
+              <h3 className="text-2xl font-bold mb-4 font-heading" style={{ color: "var(--foreground)" }}>
                 {service.title}
               </h3>
-              <p className="text-gray-500 mb-6 leading-relaxed text-[15px]">
+              <p className="mb-6 leading-relaxed text-[15px]" style={{ color: "var(--text-secondary)" }}>
                 {service.description}
               </p>
               <Link

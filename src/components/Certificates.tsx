@@ -60,12 +60,13 @@ export default function Certificates() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl sm:text-6xl font-bold text-gray-800 mb-20 font-heading text-left"
+            className="text-5xl sm:text-6xl font-bold mb-20 font-heading text-left"
+            style={{ color: "var(--foreground)" }}
           >
             Certificates
           </motion.h2>
           {loading ? (
-          <div className="text-left text-gray-500">Loading certificates...</div>
+          <div className="text-left" style={{ color: "var(--text-secondary)" }}>Loading certificates...</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certificates.map((cert, index) => (
@@ -87,11 +88,11 @@ export default function Certificates() {
                   />
                 </div>
               )}
-              <h3 className="text-xl font-bold text-gray-800 mb-3 font-heading">
+              <h3 className="text-xl font-bold mb-3 font-heading" style={{ color: "var(--foreground)" }}>
                 {cert.name}
               </h3>
-              <div className="text-gray-600 mb-2 text-sm">{cert.issuer}</div>
-              <div className="text-gray-400 text-sm mb-5">
+              <div className="mb-2 text-sm" style={{ color: "var(--text-secondary)" }}>{cert.issuer}</div>
+              <div className="text-sm mb-5" style={{ color: "var(--text-muted)" }}>
                 {formatDate(cert.issueDate)}
               </div>
               {cert.credentialUrl && (

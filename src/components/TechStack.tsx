@@ -28,7 +28,8 @@ export default function TechStack() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl sm:text-6xl font-bold text-gray-800 mb-16 font-heading text-center"
+            className="text-5xl sm:text-6xl font-bold mb-16 font-heading text-center"
+            style={{ color: "var(--foreground)" }}
           >
             Tech Stack
           </motion.h2>
@@ -40,7 +41,20 @@ export default function TechStack() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="px-5 py-2.5 bg-white border border-gray-200 rounded-full text-gray-700 font-medium text-sm hover:border-gray-300 hover:bg-gray-50 transition-all tracking-wide"
+              className="px-5 py-2.5 border rounded-full font-medium text-sm transition-all tracking-wide"
+              style={{
+                backgroundColor: "var(--card-bg)",
+                color: "var(--badge-text)",
+                borderColor: "var(--badge-border)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--badge-hover-bg)";
+                e.currentTarget.style.borderColor = "var(--badge-border-hover)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--card-bg)";
+                e.currentTarget.style.borderColor = "var(--badge-border)";
+              }}
             >
               {tech}
             </motion.span>

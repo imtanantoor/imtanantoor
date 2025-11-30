@@ -25,7 +25,7 @@ export default function PortfolioCard({ project, index }: PortfolioCardProps) {
       className="group"
     >
       <Link href={`/portfolio/${project.slug}`}>
-        <div className="relative h-64 bg-gray-100 overflow-hidden mb-6 rounded-sm">
+        <div className="relative h-64 bg-gray-100 dark:bg-gray-800 overflow-hidden mb-6 rounded-sm">
           {imageUrl ? (
             <Image
               src={imageUrl}
@@ -34,29 +34,41 @@ export default function PortfolioCard({ project, index }: PortfolioCardProps) {
               className="object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200">
-              <span className="text-gray-400 text-sm">No image</span>
+            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+              <span className="text-gray-400 dark:text-gray-500 text-sm">No image</span>
             </div>
           )}
         </div>
         <div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2 font-heading group-hover:text-gray-600 transition-colors">
+          <h3 className="text-xl font-bold mb-2 font-heading transition-colors" style={{ color: "var(--foreground)" }}>
             {project.title}
           </h3>
-          <p className="text-gray-500 mb-4 line-clamp-2 text-[15px] leading-relaxed">
+          <p className="mb-4 line-clamp-2 text-[15px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             {project.description}
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.techStack?.slice(0, 3).map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full font-medium"
+                className="px-3 py-1 text-xs rounded-full font-medium border"
+                style={{
+                  backgroundColor: "var(--badge-bg)",
+                  color: "var(--badge-text)",
+                  borderColor: "var(--badge-border)",
+                }}
               >
                 {tech}
               </span>
             ))}
             {project.techStack && project.techStack.length > 3 && (
-              <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full font-medium">
+              <span 
+                className="px-3 py-1 text-xs rounded-full font-medium border"
+                style={{
+                  backgroundColor: "var(--badge-bg)",
+                  color: "var(--badge-text)",
+                  borderColor: "var(--badge-border)",
+                }}
+              >
                 +{project.techStack.length - 3}
               </span>
             )}
