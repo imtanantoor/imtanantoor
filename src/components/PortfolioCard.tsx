@@ -25,7 +25,10 @@ export default function PortfolioCard({ project, index }: PortfolioCardProps) {
       className="group"
     >
       <Link href={`/portfolio/${project.slug}`}>
-        <div className="relative h-64 bg-gray-100 dark:bg-gray-800 overflow-hidden mb-6 rounded-sm">
+        <div 
+          className="relative h-64 overflow-hidden mb-6 rounded-sm"
+          style={{ backgroundColor: "var(--badge-bg)" }}
+        >
           {imageUrl ? (
             <Image
               src={imageUrl}
@@ -34,8 +37,11 @@ export default function PortfolioCard({ project, index }: PortfolioCardProps) {
               className="object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700">
-              <span className="text-gray-400 dark:text-gray-500 text-sm">No image</span>
+            <div 
+              className="w-full h-full flex items-center justify-center"
+              style={{ backgroundColor: "var(--badge-hover-bg)" }}
+            >
+              <span className="text-sm" style={{ color: "var(--text-muted)" }}>No image</span>
             </div>
           )}
         </div>
