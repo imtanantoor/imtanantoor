@@ -73,12 +73,14 @@ export interface Experience {
 
 export interface Certificate {
   id: number;
+  documentId?: string;
   name: string;
   issuer: string;
   issueDate: string;
   endDate?: string;
   credentialUrl?: string;
   logo?: StrapiImage;
+  image?: StrapiImage;
   publishedAt: string;
 }
 

@@ -71,7 +71,7 @@ export async function getCertificates(): Promise<Certificate[]> {
     const response = await fetchAPI(
       "/certificates",
       {
-        populate: ["logo"],
+        populate: ["logo", "image"],
         sort: ["issueDate:desc"],
         publicationState: "live",
       }

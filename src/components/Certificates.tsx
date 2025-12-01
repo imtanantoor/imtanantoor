@@ -9,10 +9,12 @@ import { formatDate, formatDateRange, getImageUrl } from "@/lib/strapi/utils";
 import Section from "./Section";
 import Container, { SubContainer } from "./Container";
 import { ACCENT_COLOR } from "@/lib/theme";
+import ImageModal from "./ImageModal";
 
 export default function Certificates() {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<{ image: Certificate["image"]; alt: string } | null>(null);
 
   useEffect(() => {
     async function loadCertificates() {
@@ -92,7 +94,12 @@ export default function Certificates() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
+              className="group cursor-pointer"
+              onClick={() => {
+                if (cert.image) {
+                  setSelectedImage({ image: cert.image, alt: `${cert.name} - ${cert.issuer}` });
+                }
+              }}
             >
               {cert.logo && (
                 <div className="w-20 h-20 mb-6 relative">
@@ -118,15 +125,30 @@ export default function Certificates() {
                   rel="noopener noreferrer"
                   className="font-medium inline-flex items-center gap-2 transition-colors text-sm tracking-wide group-hover:gap-3 hover:opacity-70"
                   style={{ color: ACCENT_COLOR }}
+                  onClick={(e) => e.stopPropagation()}
                 >
                   View Credential
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
               )}
+              {!cert.credentialUrl && cert.image && (
+                <span className="font-medium inline-flex items-center gap-2 transition-colors text-sm tracking-wide group-hover:gap-3 hover:opacity-70" style={{ color: ACCENT_COLOR }}>
+                  View Certificate
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              )}
             </motion.div>
           ))}
           </div>
           )}
+          
+          {/* Image Modal */}
+          <ImageModal
+            image={selectedImage?.image || null}
+            alt={selectedImage?.alt || ""}
+            isOpen={!!selectedImage}
+            onClose={() => setSelectedImage(null)}
+          />
         </SubContainer>
       </Container>
     </Section>
