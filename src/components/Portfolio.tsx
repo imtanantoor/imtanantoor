@@ -8,82 +8,22 @@ import PortfolioCard from "./PortfolioCard";
 import Section from "./Section";
 import Container, { SubContainer } from "./Container";
 
-// Dummy data for preview
-const dummyProjects: PortfolioProject[] = [
-  {
-    id: 1,
-    title: "E-Commerce Platform",
-    slug: "ecommerce-platform",
-    shortDescription:
-      "Built a scalable e-commerce platform with real-time inventory management and payment processing.",
-    techStack: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "AWS"],
-    images: [],
-    impact: [
-      { metric: "Monthly Revenue", value: "$500K+" },
-      { metric: "Uptime", value: "99.9%" },
-      { metric: "Response Time", value: "<200ms" },
-    ],
-    category: "saas" as const,
-    publishedAt: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    title: "Mobile Banking App",
-    slug: "mobile-banking-app",
-    shortDescription:
-      "React Native mobile application for a regional bank with biometric authentication and real-time transactions.",
-    techStack: ["React Native", "Node.js", "MongoDB", "AWS", "Firebase"],
-    images: [],
-    impact: [
-      { metric: "Active Users", value: "50K+" },
-      { metric: "App Rating", value: "4.8/5" },
-      { metric: "Crash Rate", value: "<0.1%" },
-    ],
-    category: "mobile" as const,
-    publishedAt: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    title: "Corporate Website Redesign",
-    slug: "corporate-website-redesign",
-    shortDescription:
-      "Complete redesign of corporate website with improved SEO, performance optimization, and modern UI/UX.",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    images: [],
-    impact: [
-      { metric: "Page Speed", value: "95+" },
-      { metric: "Conversion Rate", value: "+40%" },
-      { metric: "SEO Score", value: "98/100" },
-    ],
-    category: "website" as const,
-    publishedAt: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-];
-
 export default function Portfolio() {
-  const [projects, setProjects] = useState<PortfolioProject[]>(dummyProjects);
+  const [projects, setProjects] = useState<PortfolioProject[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadProjects() {
       try {
         const data = await getPortfolioProjects();
-        // Use API data if available, otherwise keep dummy data
-        if (data.length > 0) {
-          setProjects(data);
-        }
+        setProjects(data);
       } catch (error) {
         console.error("Failed to load portfolio projects:", error);
-        // Keep dummy data on error
+      } finally {
+        setLoading(false);
       }
     }
 
-    // Try to load from API in background
     loadProjects();
   }, []);
 
@@ -101,7 +41,11 @@ export default function Portfolio() {
           >
             Portfolio
           </motion.h2>
-          {projects.length === 0 ? (
+          {loading ? (
+            <div className="text-left" style={{ color: "var(--text-muted)" }}>
+              Loading projects...
+            </div>
+          ) : projects.length === 0 ? (
             <div className="text-left" style={{ color: "var(--text-muted)" }}>
               No projects available yet. Check back soon!
             </div>

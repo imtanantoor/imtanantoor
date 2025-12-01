@@ -7,7 +7,7 @@
     "displayName": "Portfolios"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -50,6 +50,12 @@
     },
     "shortDescription": {
       "type": "string"
+    },
+    "tech_stacks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tech-stack.tech-stack",
+      "mappedBy": "portfolios"
     }
   }
 }

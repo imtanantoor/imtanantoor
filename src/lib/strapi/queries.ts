@@ -53,7 +53,7 @@ export async function getExperience(): Promise<Experience[]> {
     const response = await fetchAPI(
       "/experiences",
       {
-        populate: ["logo"],
+        // populate: ["logo"],
         sort: ["order:asc", "startDate:desc"],
         publicationState: "live",
       }

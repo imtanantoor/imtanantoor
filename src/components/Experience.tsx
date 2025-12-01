@@ -18,138 +18,9 @@ export default function Experience() {
     async function loadExperience() {
       try {
         const data = await getExperience();
-        // Use API data if available and not empty, otherwise use fallback
-        if (data && data.length > 0) {
-          setExperiences(data);
-        } else {
-          setExperiences([
-          {
-            id: 1,
-            company: "SmashCloud",
-            role: "Senior Frontend Developer",
-            startDate: "2022-06-01",
-            endDate: undefined,
-            location: "Delaware, United States · Remote",
-            current: true,
-            order: 1,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-          {
-            id: 2,
-            company: "Proximate Solutions",
-            role: "Senior React and React Native Developer",
-            startDate: "2020-11-01",
-            endDate: "2022-06-01",
-            location: "Lahore, Punjab, Pakistan",
-            current: false,
-            order: 2,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-          {
-            id: 3,
-            company: "RepairDesk",
-            role: "Jr. Software Engineer React Native",
-            startDate: "2020-08-01",
-            endDate: "2020-11-01",
-            location: "Lahore District, Punjab, Pakistan",
-            current: false,
-            order: 3,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-          {
-            id: 4,
-            company: "Coding Pixel USA",
-            role: "React Js and React Native Developer",
-            startDate: "2020-01-01",
-            endDate: "2020-08-01",
-            location: "Lahore District, Punjab, Pakistan",
-            current: false,
-            order: 4,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-          {
-            id: 5,
-            company: "TOP SPOT",
-            role: "Web Developer & Digital Marketing Executive",
-            startDate: "2018-06-01",
-            endDate: "2019-07-01",
-            location: "Lahore",
-            current: false,
-            order: 5,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-        ]);
-        }
+        setExperiences(data);
       } catch (error) {
         console.error("Failed to load experience:", error);
-        // Set fallback data
-        setExperiences([
-          {
-            id: 1,
-            company: "SmashCloud",
-            role: "Senior Frontend Developer",
-            startDate: "2022-06-01",
-            endDate: undefined,
-            location: "Delaware, United States · Remote",
-            current: true,
-            order: 1,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-          {
-            id: 2,
-            company: "Proximate Solutions",
-            role: "Senior React and React Native Developer",
-            startDate: "2020-11-01",
-            endDate: "2022-06-01",
-            location: "Lahore, Punjab, Pakistan",
-            current: false,
-            order: 2,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-          {
-            id: 3,
-            company: "RepairDesk",
-            role: "Jr. Software Engineer React Native",
-            startDate: "2020-08-01",
-            endDate: "2020-11-01",
-            location: "Lahore District, Punjab, Pakistan",
-            current: false,
-            order: 3,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-          {
-            id: 4,
-            company: "Coding Pixel USA",
-            role: "React Js and React Native Developer",
-            startDate: "2020-01-01",
-            endDate: "2020-08-01",
-            location: "Lahore District, Punjab, Pakistan",
-            current: false,
-            order: 4,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-          {
-            id: 5,
-            company: "TOP SPOT",
-            role: "Web Developer & Digital Marketing Executive",
-            startDate: "2018-06-01",
-            endDate: "2019-07-01",
-            location: "Lahore",
-            current: false,
-            order: 5,
-            skills: [],
-            publishedAt: new Date().toISOString(),
-          },
-        ]);
       } finally {
         setLoading(false);
       }
@@ -170,11 +41,15 @@ export default function Experience() {
           >
             Experience
           </motion.h2>
-          {loading ? (
-          <div className="text-left text-white opacity-80">Loading experience...</div>
-        ) : (
-          <div className="space-y-10">
-          {experiences.map((exp, index) => (
+          {loading && (
+            <div className="text-left text-white opacity-80">Loading experience...</div>
+          )}
+          {!loading && experiences.length === 0 && (
+            <div className="text-left text-white opacity-80">No experience available yet.</div>
+          )}
+          {!loading && experiences.length > 0 && (
+            <div className="space-y-10">
+              {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}
               initial={{ opacity: 0, y: 30 }}
@@ -184,7 +59,7 @@ export default function Experience() {
               className="flex gap-6 pb-10 border-b border-white/20 last:border-0"
             >
               {exp.logo && (
-                <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-white/10 border border-white/20 overflow-hidden p-2">
+                <div className="shrink-0 w-16 h-16 rounded-lg bg-white/10 border border-white/20 overflow-hidden p-2">
                   <Image
                     src={getImageUrl(exp.logo)}
                     alt={exp.company}
@@ -222,8 +97,8 @@ export default function Experience() {
                 )}
               </div>
             </motion.div>
-          ))}
-          </div>
+              ))}
+            </div>
           )}
         </SubContainer>
       </Container>

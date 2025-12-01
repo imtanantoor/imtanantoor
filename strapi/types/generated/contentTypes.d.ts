@@ -467,6 +467,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiExperienceExperience extends Struct.CollectionTypeSchema {
+  collectionName: 'experiences';
+  info: {
+    displayName: 'Experience';
+    pluralName: 'experiences';
+    singularName: 'experience';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    company: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    current: Schema.Attribute.Boolean;
+    endDate: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::experience.experience'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    order: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.String;
+    roleDetails: Schema.Attribute.Blocks;
+    startDate: Schema.Attribute.Date;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPortfolioPortfolio extends Struct.CollectionTypeSchema {
   collectionName: 'portfolios';
   info: {
@@ -475,7 +510,7 @@ export interface ApiPortfolioPortfolio extends Struct.CollectionTypeSchema {
     singularName: 'portfolio';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     coverImage: Schema.Attribute.Media<
@@ -499,7 +534,49 @@ export interface ApiPortfolioPortfolio extends Struct.CollectionTypeSchema {
     publishedState: Schema.Attribute.Enumeration<['in progress', 'live']>;
     shortDescription: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'title'>;
+    tech_stacks: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::tech-stack.tech-stack'
+    >;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTechStackTechStack extends Struct.CollectionTypeSchema {
+  collectionName: 'tech-stacks';
+  info: {
+    displayName: 'Tech-stacks';
+    pluralName: 'tech-stacks';
+    singularName: 'tech-stack';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: false;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tech-stack.tech-stack'
+    > &
+      Schema.Attribute.Private;
+    portfolios: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::portfolio.portfolio'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1017,7 +1094,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::experience.experience': ApiExperienceExperience;
       'api::portfolio.portfolio': ApiPortfolioPortfolio;
+      'api::tech-stack.tech-stack': ApiTechStackTechStack;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
