@@ -4,6 +4,8 @@ import Link from "next/link";
 import { getPortfolioBySlug, getPortfolioProjects } from "@/lib/strapi/queries";
 import { getImageUrl, renderRichText } from "@/lib/strapi/utils";
 import { FaArrowLeft } from "react-icons/fa";
+import ImageCarousel from "@/components/ImageCarousel";
+import Text from "@/components/Text";
 
 export async function generateStaticParams() {
   try {
@@ -11,16 +13,16 @@ export async function generateStaticParams() {
     return projects.map((project) => ({
       slug: project.slug,
     }));
-  } catch (error) {
+  } catch {
     return [];
   }
 }
 
 export default async function PortfolioDetailPage({
   params,
-}: {
+}: Readonly<{
   params: Promise<{ slug: string }>;
-}) {
+}>) {
   const { slug } = await params;
   const project = await getPortfolioBySlug(slug);
 
@@ -31,6 +33,11 @@ export default async function PortfolioDetailPage({
   const coverImage = project.coverImage || project.images?.[0];
   const coverImageUrl = coverImage ? getImageUrl(coverImage, "large") : "";
   const richTextHtml = project.description ? renderRichText(project.description) : "";
+  
+  // Calculate aspect ratio from image dimensions
+  const coverImageAspectRatio = coverImage?.width && coverImage?.height
+    ? coverImage.width / coverImage.height
+    : 16 / 9; // Default to 16:9 if dimensions not available
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--background)" }}>
@@ -48,12 +55,19 @@ export default async function PortfolioDetailPage({
 
         <article className="rounded-lg border overflow-hidden" style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--border)" }}>
           {coverImageUrl && (
-            <div className="relative h-96" style={{ backgroundColor: "var(--badge-bg)" }}>
+            <div
+              className="relative w-full"
+              style={{
+                aspectRatio: coverImageAspectRatio.toString(),
+                backgroundColor: "var(--badge-bg)",
+                maxHeight: "70vh",
+              }}
+            >
               <Image
                 src={coverImageUrl}
                 alt={coverImage?.alternativeText || project.title}
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
                 unoptimized={process.env.NODE_ENV === "development"}
               />
@@ -66,9 +80,9 @@ export default async function PortfolioDetailPage({
             </h1>
 
             <div className="mb-8">
-              <p className="text-xl mb-8 leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+              <Text as="p" size="xl" color="secondary" leading="relaxed" className="mb-8">
                 {project.shortDescription}
-              </p>
+              </Text>
               {richTextHtml && (
                 <div
                   className="rich-text-content"
@@ -107,9 +121,9 @@ export default async function PortfolioDetailPage({
                   Impact
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                  {project.impact.map((impact, index) => (
+                  {project.impact.map((impact) => (
                     <div
-                      key={index}
+                      key={`${impact.metric}-${impact.value}`}
                       className="p-6 rounded-lg border"
                       style={{
                         backgroundColor: "var(--badge-bg)",
@@ -131,32 +145,7 @@ export default async function PortfolioDetailPage({
                 <h2 className="text-2xl font-bold mb-6 font-heading" style={{ color: "var(--foreground)" }}>
                   Gallery
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {project.images.slice(1).map((image, index) => {
-                    const imageUrl = getImageUrl(image, "medium");
-                    return (
-                      <div
-                        key={image.id || index}
-                        className="relative h-64 rounded-lg overflow-hidden"
-                        style={{ backgroundColor: "var(--badge-bg)" }}
-                      >
-                        {imageUrl ? (
-                          <Image
-                            src={imageUrl}
-                            alt={image.alternativeText || `${project.title} - Image ${index + 2}`}
-                            fill
-                            className="object-cover"
-                            unoptimized={process.env.NODE_ENV === "development"}
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-sm" style={{ color: "var(--text-muted)" }}>No image</span>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                <ImageCarousel images={project.images.slice(1)} title={project.title} />
               </div>
             )}
           </div>

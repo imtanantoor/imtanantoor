@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { PortfolioProject } from "@/lib/strapi/types";
 import { getImageUrl } from "@/lib/strapi/utils";
 import { ACCENT_COLOR } from "@/lib/theme";
+import Text from "./Text";
 
 interface PortfolioCardProps {
   project: PortfolioProject;
@@ -54,9 +55,9 @@ export default function PortfolioCard({ project, index }: PortfolioCardProps) {
           <h3 className="text-xl font-bold mb-2 font-heading transition-colors" style={{ color: "var(--foreground)" }}>
             {project.title}
           </h3>
-          <p className="mb-4 line-clamp-2 text-[15px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+          <Text as="p" size="base" color="secondary" leading="relaxed" className="mb-4 line-clamp-2 text-[15px]">
             {project.shortDescription}
-          </p>
+          </Text>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.techStack?.slice(0, 3).map((tech) => (
               <span
