@@ -10,11 +10,9 @@ import { transformStrapiResponse } from "./utils";
 export async function getPortfolioProjects(): Promise<PortfolioProject[]> {
   try {
     const response = await fetchAPI(
-      "/portfolio-projects",
+      "/portfolios",
       {
-        populate: {
-          images: "*",
-        },
+        populate: ["images", "coverImage"],
         sort: ["publishedAt:desc"],
         publicationState: "live",
       }
@@ -30,16 +28,14 @@ export async function getPortfolioProjects(): Promise<PortfolioProject[]> {
 export async function getPortfolioBySlug(slug: string): Promise<PortfolioProject | null> {
   try {
     const response = await fetchAPI(
-      "/portfolio-projects",
+      "/portfolios",
       {
         filters: {
           slug: {
             $eq: slug,
           },
         },
-        populate: {
-          images: "*",
-        },
+        populate: ["images", "coverImage"],
         publicationState: "live",
       }
     );
@@ -57,9 +53,7 @@ export async function getExperience(): Promise<Experience[]> {
     const response = await fetchAPI(
       "/experiences",
       {
-        populate: {
-          logo: "*",
-        },
+        populate: ["logo"],
         sort: ["order:asc", "startDate:desc"],
         publicationState: "live",
       }
@@ -77,9 +71,7 @@ export async function getCertificates(): Promise<Certificate[]> {
     const response = await fetchAPI(
       "/certificates",
       {
-        populate: {
-          logo: "*",
-        },
+        populate: ["logo"],
         sort: ["issueDate:desc"],
         publicationState: "live",
       }
@@ -121,10 +113,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 export async function getBlogPosts() {
   // Future implementation for blog
   const response = await fetchAPI("/blog-posts", {
-    populate: {
-      coverImage: "*",
-      author: "*",
-    },
+    populate: ["coverImage", "author"],
     sort: ["publishedAt:desc"],
     publicationState: "live",
   });

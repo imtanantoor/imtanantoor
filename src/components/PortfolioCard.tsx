@@ -13,8 +13,9 @@ interface PortfolioCardProps {
 }
 
 export default function PortfolioCard({ project, index }: PortfolioCardProps) {
-  const mainImage = project.images?.[0];
-  const imageUrl = mainImage ? getImageUrl(mainImage) : "";
+  // Use coverImage if available, otherwise fall back to first image
+  const mainImage = project.coverImage || project.images?.[0];
+  const imageUrl = mainImage ? getImageUrl(mainImage, "medium") : "";
 
   return (
     <motion.div
@@ -32,9 +33,13 @@ export default function PortfolioCard({ project, index }: PortfolioCardProps) {
           {imageUrl ? (
             <Image
               src={imageUrl}
-              alt={project.title}
+              alt={mainImage?.alternativeText || project.title}
               fill
               className="object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+              unoptimized={process.env.NODE_ENV === "development"}
+              onError={(e) => {
+                console.error("Image failed to load:", imageUrl, e);
+              }}
             />
           ) : (
             <div 
@@ -50,7 +55,7 @@ export default function PortfolioCard({ project, index }: PortfolioCardProps) {
             {project.title}
           </h3>
           <p className="mb-4 line-clamp-2 text-[15px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-            {project.description}
+            {project.shortDescription}
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.techStack?.slice(0, 3).map((tech) => (

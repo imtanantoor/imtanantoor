@@ -46,33 +46,27 @@ export default function Header() {
           </Link>
           <div className="flex items-center gap-8 sm:gap-12">
             <Link
-              href="#work"
-              className="text-sm transition-colors hidden sm:block tracking-wide"
+              href="/#work"
+              className="text-sm transition-colors hidden sm:block tracking-wide hover-nav-link"
               style={{ 
                 color: "var(--text-secondary)",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = "var(--foreground)"}
-              onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}
             >
               Work
             </Link>
             <Link
-              href="#experience"
-              className="text-sm transition-colors hidden sm:block tracking-wide"
+              href="/#experience"
+              className="text-sm transition-colors hidden sm:block tracking-wide hover-nav-link"
               style={{ 
                 color: "var(--text-secondary)",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = "var(--foreground)"}
-              onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}
             >
               Experience
             </Link>
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 flex items-center justify-center rounded-full transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-full transition-colors hover-theme-button"
               style={{ backgroundColor: "var(--badge-bg)" }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "var(--badge-hover-bg)"}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "var(--badge-bg)"}
               aria-label="Toggle dark mode"
             >
               {theme === "dark" ? (
@@ -82,7 +76,7 @@ export default function Header() {
               )}
             </button>
             <Link
-              href="#contact"
+              href="/#contact"
               className="px-6 py-2.5 text-sm font-medium rounded-full transition-all tracking-wide shadow-md hover:shadow-lg whitespace-nowrap hover:opacity-90 accent-button"
               style={{ backgroundColor: ACCENT_COLOR, color: 'white' }}
             >

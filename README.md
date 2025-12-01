@@ -52,7 +52,16 @@ A minimalistic, professional portfolio website built with Next.js 16, React 19, 
    Create a `.env.local` file in the root directory:
    ```env
    NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337/api
+   NEXT_PUBLIC_STRAPI_API_TOKEN=your_api_token_here
    ```
+   
+   **Getting your API Token:**
+   - Start Strapi: `cd strapi && yarn develop`
+   - Go to http://localhost:1337/admin
+   - Navigate to **Settings** → **API Tokens**
+   - Click **Create new API Token**
+   - Choose **Read-only** or **Full access** (depending on your needs)
+   - Copy the token and paste it in your `.env.local` file
 
 4. **Start Strapi CMS**
    ```bash
@@ -165,6 +174,7 @@ Strapi can be deployed separately:
 
 Make sure to set:
 - `NEXT_PUBLIC_STRAPI_API_URL` - Your Strapi API URL
+- `NEXT_PUBLIC_STRAPI_API_TOKEN` - Your Strapi API Token (for authenticated requests)
 
 ## Features in Detail
 

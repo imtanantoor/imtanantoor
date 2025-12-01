@@ -1,24 +1,56 @@
-export interface StrapiImage {
-  id: number;
-  url: string;
-  alternativeText?: string;
+export interface StrapiImageFormat {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
   width: number;
   height: number;
+  size: number;
+  sizeInBytes: number;
+  url: string;
+}
+
+export interface StrapiImage {
+  id: number;
+  documentId?: string;
+  name: string;
+  alternativeText?: string | null;
+  caption?: string | null;
+  width: number;
+  height: number;
+  formats?: {
+    thumbnail?: StrapiImageFormat;
+    small?: StrapiImageFormat;
+    medium?: StrapiImageFormat;
+    large?: StrapiImageFormat;
+  };
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: string | null;
+  provider?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
 }
 
 export interface PortfolioProject {
   id: number;
+  documentId?: string;
   title: string;
   slug: string;
-  description: string;
-  fullDescription: string;
-  techStack: string[];
+  shortDescription: string;
+  description?: any; // Rich text array from Strapi
+  techStack?: string[];
   images: StrapiImage[];
+  coverImage?: StrapiImage | null;
   impact?: Array<{
     metric: string;
     value: string;
   }>;
-  category: "mobile" | "saas" | "website";
+  category?: "mobile" | "saas" | "website";
   publishedAt: string;
   createdAt: string;
   updatedAt: string;

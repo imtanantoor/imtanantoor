@@ -135,3 +135,89 @@ a {
 footer[style*="backgroundColor"] {
   background-color: var(--accent) !important;
 }
+
+/* Header navigation link hover styles */
+.hover-nav-link {
+  color: var(--text-secondary);
+}
+
+.hover-nav-link:hover {
+  color: var(--foreground) !important;
+}
+
+/* Theme toggle button hover styles */
+.hover-theme-button {
+  background-color: var(--badge-bg);
+}
+
+.hover-theme-button:hover {
+  background-color: var(--badge-hover-bg) !important;
+}
+
+/* Link hover styles for portfolio detail page */
+.hover-link {
+  color: var(--text-secondary);
+}
+
+.hover-link:hover {
+  color: var(--foreground) !important;
+}
+
+/* Back button hover effect */
+a.group:hover {
+  color: var(--foreground) !important;
+}
+
+/* Rich text content styling to match site fonts */
+.rich-text-content p {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3,
+.rich-text-content h4,
+.rich-text-content h5,
+.rich-text-content h6 {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.rich-text-content ul,
+.rich-text-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.rich-text-content li {
+  margin-bottom: 0.5rem;
+}
+
+.rich-text-content code {
+  background-color: var(--badge-bg);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.rich-text-content pre {
+  background-color: var(--badge-bg);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.rich-text-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}

@@ -14,14 +14,14 @@ const dummyProjects: PortfolioProject[] = [
     id: 1,
     title: "E-Commerce Platform",
     slug: "ecommerce-platform",
-    description: "Built a scalable e-commerce platform with real-time inventory management and payment processing.",
-    fullDescription: "<p>Developed a full-stack e-commerce solution using Next.js and Node.js. The platform handles thousands of daily transactions with 99.9% uptime.</p>",
+    shortDescription:
+      "Built a scalable e-commerce platform with real-time inventory management and payment processing.",
     techStack: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "AWS"],
     images: [],
     impact: [
       { metric: "Monthly Revenue", value: "$500K+" },
       { metric: "Uptime", value: "99.9%" },
-      { metric: "Response Time", value: "<200ms" }
+      { metric: "Response Time", value: "<200ms" },
     ],
     category: "saas" as const,
     publishedAt: new Date().toISOString(),
@@ -32,14 +32,14 @@ const dummyProjects: PortfolioProject[] = [
     id: 2,
     title: "Mobile Banking App",
     slug: "mobile-banking-app",
-    description: "React Native mobile application for a regional bank with biometric authentication and real-time transactions.",
-    fullDescription: "<p>Created a secure mobile banking application with React Native. Features include biometric login, real-time balance updates, and transaction history.</p>",
+    shortDescription:
+      "React Native mobile application for a regional bank with biometric authentication and real-time transactions.",
     techStack: ["React Native", "Node.js", "MongoDB", "AWS", "Firebase"],
     images: [],
     impact: [
       { metric: "Active Users", value: "50K+" },
       { metric: "App Rating", value: "4.8/5" },
-      { metric: "Crash Rate", value: "<0.1%" }
+      { metric: "Crash Rate", value: "<0.1%" },
     ],
     category: "mobile" as const,
     publishedAt: new Date().toISOString(),
@@ -50,14 +50,14 @@ const dummyProjects: PortfolioProject[] = [
     id: 3,
     title: "Corporate Website Redesign",
     slug: "corporate-website-redesign",
-    description: "Complete redesign of corporate website with improved SEO, performance optimization, and modern UI/UX.",
-    fullDescription: "<p>Redesigned and rebuilt a corporate website from scratch using Next.js. Achieved 95+ Lighthouse score and improved conversion rates by 40%.</p>",
+    shortDescription:
+      "Complete redesign of corporate website with improved SEO, performance optimization, and modern UI/UX.",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     images: [],
     impact: [
       { metric: "Page Speed", value: "95+" },
       { metric: "Conversion Rate", value: "+40%" },
-      { metric: "SEO Score", value: "98/100" }
+      { metric: "SEO Score", value: "98/100" },
     ],
     category: "website" as const,
     publishedAt: new Date().toISOString(),
@@ -68,12 +68,8 @@ const dummyProjects: PortfolioProject[] = [
 
 export default function Portfolio() {
   const [projects, setProjects] = useState<PortfolioProject[]>(dummyProjects);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Show dummy data immediately
-    setLoading(false);
-    
     async function loadProjects() {
       try {
         const data = await getPortfolioProjects();
@@ -86,7 +82,7 @@ export default function Portfolio() {
         // Keep dummy data on error
       }
     }
-    
+
     // Try to load from API in background
     loadProjects();
   }, []);
@@ -105,23 +101,23 @@ export default function Portfolio() {
           >
             Portfolio
           </motion.h2>
-          {loading ? (
-          <div className="text-left" style={{ color: "var(--text-muted)" }}>Loading projects...</div>
-        ) : projects.length === 0 ? (
-          <div className="text-left" style={{ color: "var(--text-muted)" }}>
-            No projects available yet. Check back soon!
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <PortfolioCard key={project.id} project={project} index={index} />
-            ))}
-          </div>
+          {projects.length === 0 ? (
+            <div className="text-left" style={{ color: "var(--text-muted)" }}>
+              No projects available yet. Check back soon!
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <PortfolioCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                />
+              ))}
+            </div>
           )}
         </SubContainer>
       </Container>
     </Section>
   );
 }
-
-
