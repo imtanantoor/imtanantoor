@@ -1,0 +1,11 @@
+---
+alwaysApply: true
+description: "Validation rules for lead intake quality"
+---
+Instructions:
+- Validate all required fields client-side
+- Keep validation deterministic and simple
+- Avoid async or external dependencies
+- Display clear, human-readable error messages
+
+Validation exists to improve lead quality, not block submissions.

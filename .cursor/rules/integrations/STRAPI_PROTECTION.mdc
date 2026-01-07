@@ -1,0 +1,16 @@
+---
+alwaysApply: true
+description: "Protect existing Strapi schemas, relations, and data fetching"
+---
+Instructions:
+- Do NOT modify existing Strapi content types or schemas
+- Do NOT rename, remove, or repurpose Strapi fields
+- Do NOT change existing data-fetching logic or API endpoints
+- Do NOT replace Strapi-driven content with static data
+- Presentation-level changes must consume existing Strapi data as-is
+
+If SEO or conversion improvements require content changes:
+- Adjust presentation or copy only
+- Do NOT alter Strapi data structures
+
+If unsure, ask or warn before making changes.

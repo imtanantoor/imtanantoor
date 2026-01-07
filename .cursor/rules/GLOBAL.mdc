@@ -1,0 +1,20 @@
+---
+alwaysApply: true
+description: "Global rules for portfolio as a conversion-focused lead system"
+---
+
+You are working on a professional portfolio website whose primary purpose is lead acquisition.
+
+Instructions:
+- Optimize all changes for business clarity, trust, and conversion
+- Assume the primary audience is non-technical business decision makers
+- Prefer explicit structure over implicit or inferred behavior
+- Avoid novelty or cleverness that reduces clarity
+- Do not introduce features that prioritize aesthetics over conversion
+
+Examples of preferred patterns:
+- Clear CTAs over subtle design elements
+- Explicit form labels over placeholder-only inputs
+- Trust indicators (testimonials, logos) over decorative graphics
+
+If a request conflicts with phase-specific rules, warn instead of executing.

@@ -1,0 +1,19 @@
+---
+alwaysApply: true
+description: "Mandatory SEO metadata requirements for all public pages"
+---
+Instructions:
+- Every public page must include:
+  - Meta title (55–60 characters)
+  - Meta description (140–160 characters)
+  - Canonical URL
+  - Open Graph title and description
+  - Twitter card metadata
+
+Rules:
+- Titles must include primary service or outcome keywords
+- Descriptions must describe business value, not technology stacks
+- Metadata is required even if not explicitly requested
+- Never ship a page without metadata
+
+If metadata is missing, add it by default.

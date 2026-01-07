@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+description: "SEO-safe semantic structure rules"
+---
+Instructions:
+- Use exactly one H1 per page
+- H1 must communicate the primary value proposition
+- Use H2s for major sections (Services, Portfolio, Experience, Intake)
+- Avoid empty, placeholder, or lazy-loaded SEO content
+- Ensure critical content is crawlable without client-side execution
+
+Do not replace semantic structure with purely visual components.
