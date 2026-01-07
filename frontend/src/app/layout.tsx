@@ -21,6 +21,21 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Fullstack Developer | Creating Apps That Increase Revenue",
   description: "Fullstack Developer specializing in scalable, revenue-driven applications. Expert in Next.js, React, React Native, Node.js, TypeScript, and AWS deployments.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://imtanantoor.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Fullstack Developer | Creating Apps That Increase Revenue",
+    description: "Fullstack Developer specializing in scalable, revenue-driven applications. Expert in Next.js, React, React Native, Node.js, TypeScript, and AWS deployments.",
+    type: "website",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fullstack Developer | Creating Apps That Increase Revenue",
+    description: "Fullstack Developer specializing in scalable, revenue-driven applications. Expert in Next.js, React, React Native, Node.js, TypeScript, and AWS deployments.",
+  },
 };
 
 export default function RootLayout({

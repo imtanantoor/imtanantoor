@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Section from "./Section";
 import Container, { SubContainer } from "./Container";
 import TypingText from "./TypingText";
+import { ACCENT_COLOR } from "@/lib/theme";
 
 const techStack = ["Next.js", "React", "React Native", "Node.js", "TypeScript", "AWS"];
 
@@ -99,9 +100,11 @@ export default function Hero() {
           className="mb-12"
         >
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold font-heading leading-tight" style={{ color: "var(--foreground)" }}>
-            I am Imtanan
+            I Transform Business Challenges Into Revenue-Generating Applications
             <br />
-            <TypingText texts={heroTexts} className="inline-block" />
+            <span className="text-4xl sm:text-5xl lg:text-6xl font-normal opacity-80 mt-4 block">
+              <TypingText texts={heroTexts} className="inline-block" />
+            </span>
           </h1>
         </motion.div>
         
@@ -140,11 +143,25 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="text-lg sm:text-xl mb-16 leading-relaxed max-w-2xl mx-auto"
+          className="text-lg sm:text-xl mb-12 leading-relaxed max-w-2xl mx-auto"
           style={{ color: "var(--text-secondary)" }}
         >
           {subtitle}
         </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
+          className="mb-16"
+        >
+          <a
+            href="#contact"
+            className="inline-block px-8 py-4 text-lg font-semibold text-white rounded-lg transition-all tracking-wide shadow-lg hover:shadow-xl hover:opacity-90"
+            style={{ backgroundColor: ACCENT_COLOR }}
+          >
+            Request a Project Estimate
+          </a>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
