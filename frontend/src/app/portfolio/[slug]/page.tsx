@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getPortfolioBySlug, getPortfolioProjects } from "@/lib/strapi/queries";
 import { getImageUrl, renderRichText } from "@/lib/strapi/utils";
 import { FaArrowLeft } from "react-icons/fa";
@@ -16,6 +17,50 @@ export async function generateStaticParams() {
   } catch {
     return [];
   }
+}
+
+export async function generateMetadata({
+  params,
+}: Readonly<{
+  params: Promise<{ slug: string }>;
+}>): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getPortfolioBySlug(slug);
+
+  if (!project) {
+    return {
+      title: "Project Not Found",
+    };
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://imtanantoor.com";
+  const coverImage = project.coverImage || project.images?.[0];
+  const coverImageUrl = coverImage ? getImageUrl(coverImage, "large") : "";
+
+  const title = `${project.title} | Portfolio Project`;
+  const description = project.shortDescription || `View details about ${project.title}, a project showcasing modern web development and scalable solutions.`;
+
+  return {
+    title: title.length > 60 ? title.substring(0, 57) + "..." : title,
+    description: description.length > 160 ? description.substring(0, 157) + "..." : description,
+    metadataBase: new URL(siteUrl),
+    alternates: {
+      canonical: `/portfolio/${slug}`,
+    },
+    openGraph: {
+      title: title.length > 60 ? title.substring(0, 57) + "..." : title,
+      description: description.length > 160 ? description.substring(0, 157) + "..." : description,
+      type: "website",
+      url: `/portfolio/${slug}`,
+      images: coverImageUrl ? [{ url: coverImageUrl, alt: project.title }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title.length > 60 ? title.substring(0, 57) + "..." : title,
+      description: description.length > 160 ? description.substring(0, 157) + "..." : description,
+      images: coverImageUrl ? [coverImageUrl] : [],
+    },
+  };
 }
 
 export default async function PortfolioDetailPage({

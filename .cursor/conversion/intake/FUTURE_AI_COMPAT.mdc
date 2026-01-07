@@ -1,0 +1,15 @@
+---
+alwaysApply: true
+description: "Guidelines to ensure future AI compatibility without implementation"
+---
+Instructions:
+- Use explicit, descriptive field names
+- Avoid overloaded or ambiguous concepts
+- Structure data so it can map cleanly to:
+  - PRD sections
+  - Feature extraction
+  - Timeline estimation
+  - Cost estimation
+
+Do not implement AI in Phase 1.
+Only shape data for future intelligence.

@@ -6,8 +6,16 @@ import { motion } from "framer-motion";
 import Section from "./Section";
 import Container, { SubContainer } from "./Container";
 import TypingText from "./TypingText";
+import { ACCENT_COLOR } from "@/lib/theme";
 
-const techStack = ["Next.js", "React", "React Native", "Node.js", "TypeScript", "AWS"];
+const techStack = [
+  "Next.js",
+  "React",
+  "React Native",
+  "Node.js",
+  "TypeScript",
+  "AWS",
+];
 
 // Customer-focused hero texts - short and concise
 const heroTexts = [
@@ -60,7 +68,10 @@ export default function Hero() {
     async function loadSettings() {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337/api"}/site-setting?populate=*`
+          `${
+            process.env.NEXT_PUBLIC_STRAPI_API_URL ||
+            "http://localhost:1337/api"
+          }/site-setting?populate=*`
         );
         if (response.ok) {
           const data = await response.json();
@@ -84,133 +95,181 @@ export default function Hero() {
     siteSettings?.heroSubtitle ||
     "I transform your business challenges into powerful digital solutions. From concept to launch, I deliver apps that drive growth and exceed expectations.";
 
-  const linkedinUrl = siteSettings?.socialLinks?.linkedin || "https://linkedin.com";
+  const linkedinUrl =
+    siteSettings?.socialLinks?.linkedin || "https://linkedin.com";
   const githubUrl = siteSettings?.socialLinks?.github || "https://github.com";
-  const toptalUrl = siteSettings?.socialLinks?.toptal || "https://www.toptal.com/resume/imtanan-aziz-toor";
+  const toptalUrl =
+    siteSettings?.socialLinks?.toptal ||
+    "https://www.toptal.com/resume/imtanan-aziz-toor";
 
   return (
-    <Section className="min-h-screen flex items-center justify-center pt-40">
+    <Section className="min-h-screen flex items-center justify-center pt-32 pb-20">
       <Container maxWidth="5xl">
         <SubContainer className="text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="mb-12"
-        >
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold font-heading leading-tight" style={{ color: "var(--foreground)" }}>
-            I am Imtanan
-            <br />
-            <TypingText texts={heroTexts} className="inline-block" />
-          </h1>
-        </motion.div>
-        
-        {/* Toptal Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="mb-16 flex justify-center"
-        >
-          <a
-            href={toptalUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 border rounded-full transition-colors group"
-            style={{ 
-              backgroundColor: "var(--badge-bg)",
-              borderColor: "var(--badge-border)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--badge-hover-bg)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "var(--badge-bg)";
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            className="mb-8"
           >
-            <ToptalIcon size={16} />
-            <span className="text-sm font-medium tracking-wide" style={{ color: "var(--badge-text)" }}>
-              Top 1% Developer
-            </span>
-            <span className="group-hover:translate-x-1 transition-transform" style={{ color: "var(--text-secondary)" }}>→</span>
-          </a>
-        </motion.div>
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-semibold font-heading leading-tight max-w-4xl mx-auto"
+              style={{ color: "var(--foreground)" }}
+            >
+              I Transform Business Challenges Into Revenue-Generating
+              Applications
+            </h1>
+            <div className="mt-4 mb-6">
+              <p
+                className="text-lg sm:text-xl font-normal opacity-70"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                <TypingText texts={heroTexts} className="inline-block" />
+              </p>
+            </div>
+          </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="text-lg sm:text-xl mb-16 leading-relaxed max-w-2xl mx-auto"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          {subtitle}
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="flex flex-wrap items-center justify-center gap-3 mb-12"
-        >
-          {techStack.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 text-xs rounded-full font-medium border"
+          {/* Toptal Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="mb-8 flex justify-center"
+          >
+            <a
+              href={toptalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 border rounded-full transition-colors group"
               style={{
                 backgroundColor: "var(--badge-bg)",
-                color: "var(--badge-text)",
                 borderColor: "var(--badge-border)",
               }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--badge-hover-bg)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--badge-bg)";
+              }}
             >
-              {tech}
-            </span>
-          ))}
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-          className="flex items-center justify-center gap-3"
-        >
-          <a
-            href={linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center transition-colors"
+              <ToptalIcon size={16} />
+              <span
+                className="text-sm font-medium tracking-wide"
+                style={{ color: "var(--badge-text)" }}
+              >
+                Top 1% Developer
+              </span>
+              <span
+                className="group-hover:translate-x-1 transition-transform"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                →
+              </span>
+            </a>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="text-base sm:text-lg mb-8 leading-relaxed max-w-2xl mx-auto"
             style={{ color: "var(--text-secondary)" }}
-            onMouseEnter={(e) => e.currentTarget.style.color = "var(--foreground)"}
-            onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}
-            aria-label="LinkedIn"
           >
-            <FaLinkedin size={20} />
-          </a>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center transition-colors"
-            style={{ color: "var(--text-secondary)" }}
-            onMouseEnter={(e) => e.currentTarget.style.color = "var(--foreground)"}
-            onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}
-            aria-label="GitHub"
+            {subtitle}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
+            className="mb-10"
           >
-            <FaGithub size={20} />
-          </a>
-          <a
-            href={toptalUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center transition-colors"
-            style={{ color: "var(--text-secondary)" }}
-            onMouseEnter={(e) => e.currentTarget.style.color = "var(--foreground)"}
-            onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}
-            aria-label="Toptal"
+            <a
+              href="#contact"
+              className="inline-block px-6 py-3 text-base font-semibold !text-white rounded-lg transition-all tracking-wide shadow-md hover:shadow-lg hover:opacity-90"
+              style={{
+                backgroundColor: ACCENT_COLOR,
+              }}
+            >
+              Request a Project Estimate
+            </a>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-wrap items-center justify-center gap-2 mb-8"
           >
-            <ToptalIcon size={20} />
-          </a>
-        </motion.div>
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1 text-xs rounded-full font-medium border"
+                style={{
+                  backgroundColor: "var(--badge-bg)",
+                  color: "var(--badge-text)",
+                  borderColor: "var(--badge-border)",
+                }}
+              >
+                {tech}
+              </span>
+            ))}
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            className="flex items-center justify-center gap-3"
+          >
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center transition-colors"
+              style={{ color: "var(--text-secondary)" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = "var(--foreground)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--text-secondary)")
+              }
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin size={20} />
+            </a>
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center transition-colors"
+              style={{ color: "var(--text-secondary)" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = "var(--foreground)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--text-secondary)")
+              }
+              aria-label="GitHub"
+            >
+              <FaGithub size={20} />
+            </a>
+            <a
+              href={toptalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center transition-colors"
+              style={{ color: "var(--text-secondary)" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = "var(--foreground)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--text-secondary)")
+              }
+              aria-label="Toptal"
+            >
+              <ToptalIcon size={20} />
+            </a>
+          </motion.div>
         </SubContainer>
       </Container>
     </Section>
   );
 }
-

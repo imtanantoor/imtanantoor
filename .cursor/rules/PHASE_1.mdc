@@ -1,0 +1,21 @@
+---
+alwaysApply: true
+description: "Phase 1 scope: landing page optimization and structured lead intake"
+---
+Current phase is PHASE 1.
+
+Phase 1 objectives:
+- Optimize the landing page for conversion
+- Enforce SEO fundamentals
+- Implement a structured, manual lead intake flow
+- Prepare data structures for future AI processing
+
+Explicitly forbidden in Phase 1:
+- AI chatbots or conversational agents
+- LLM or OpenAI API usage
+- Automated PRD generation
+- Background jobs, queues, or workflows
+- CRM or email automation
+- Analytics beyond SEO metadata readiness
+
+If a feature can be implemented later using AI, only prepare structure now.
