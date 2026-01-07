@@ -7,7 +7,7 @@ export default [
     config: {
       origin: [
         'http://localhost:3000', // Local development
-        'https://main.d34wwwwm8ixeus.amplifyapp.com/'
+        'https://main.d34wwwwm8ixeus.amplifyapp.com', // Production frontend
         // 'https://your-production-domain.com',
         // 'https://www.your-production-domain.com',
         // Or use environment variable: process.env.CORS_ORIGIN?.split(',') || []
