@@ -104,7 +104,7 @@ export default function Contact() {
               Discuss Your Project
             </h3>
             <p className="mb-8 leading-relaxed text-[15px]" style={{ color: "var(--text-secondary)" }}>
-              Share your project details to receive a tailored estimate. I'll review your requirements and provide a clear timeline and scope for your project.
+              Share your project details to receive a tailored estimate. I&apos;ll review your requirements and provide a clear timeline and scope for your project.
             </p>
             <div className="flex gap-3">
               <a
@@ -154,7 +154,7 @@ export default function Contact() {
           >
             {submitted && (
               <div className="p-3 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg text-green-800 dark:text-green-300 text-sm mb-4">
-                Thank you! Your project details have been received. I'll review and respond within 24 hours.
+                Thank you! Your project details have been received. I&apos;ll review and respond within 24 hours.
               </div>
             )}
             <div>
@@ -247,19 +247,23 @@ export default function Contact() {
                   setFormData({ ...formData, project_type: e.target.value as ProjectType });
                   if (errors.project_type) setErrors({ ...errors, project_type: "" });
                 }}
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all appearance-none bg-no-repeat bg-right"
                 style={{
                   borderColor: errors.project_type ? "#ef4444" : "var(--border-color)",
                   backgroundColor: "var(--card-bg)",
                   color: "var(--foreground)",
                   "--tw-ring-color": ACCENT_COLOR,
+                  backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
+                  backgroundSize: "1.5em 1.5em",
                 } as React.CSSProperties}
                 onFocus={(e) => {
-                  e.target.style.borderColor = errors.project_type ? "#ef4444" : ACCENT_COLOR;
-                  e.target.style.boxShadow = `0 0 0 2px ${errors.project_type ? "#ef444440" : `${ACCENT_COLOR}40`}`;
+                  if (!errors.project_type) {
+                    e.target.style.borderColor = ACCENT_COLOR;
+                    e.target.style.boxShadow = `0 0 0 2px ${ACCENT_COLOR}40`;
+                  }
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = errors.project_type ? "#ef4444" : "";
+                  e.target.style.borderColor = errors.project_type ? "#ef4444" : "var(--border-color)";
                   e.target.style.boxShadow = "";
                 }}
               >
@@ -289,19 +293,23 @@ export default function Contact() {
                   setFormData({ ...formData, project_stage: e.target.value as ProjectStage });
                   if (errors.project_stage) setErrors({ ...errors, project_stage: "" });
                 }}
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all appearance-none bg-no-repeat bg-right"
                 style={{
                   borderColor: errors.project_stage ? "#ef4444" : "var(--border-color)",
                   backgroundColor: "var(--card-bg)",
                   color: "var(--foreground)",
                   "--tw-ring-color": ACCENT_COLOR,
+                  backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
+                  backgroundSize: "1.5em 1.5em",
                 } as React.CSSProperties}
                 onFocus={(e) => {
-                  e.target.style.borderColor = errors.project_stage ? "#ef4444" : ACCENT_COLOR;
-                  e.target.style.boxShadow = `0 0 0 2px ${errors.project_stage ? "#ef444440" : `${ACCENT_COLOR}40`}`;
+                  if (!errors.project_stage) {
+                    e.target.style.borderColor = ACCENT_COLOR;
+                    e.target.style.boxShadow = `0 0 0 2px ${ACCENT_COLOR}40`;
+                  }
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = errors.project_stage ? "#ef4444" : "";
+                  e.target.style.borderColor = errors.project_stage ? "#ef4444" : "var(--border-color)";
                   e.target.style.boxShadow = "";
                 }}
               >

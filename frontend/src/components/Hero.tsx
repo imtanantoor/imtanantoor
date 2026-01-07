@@ -90,22 +90,23 @@ export default function Hero() {
   const toptalUrl = siteSettings?.socialLinks?.toptal || "https://www.toptal.com/resume/imtanan-aziz-toor";
 
   return (
-    <Section className="min-h-screen flex items-center justify-center pt-40">
+    <Section className="min-h-screen flex items-center justify-center pt-32 pb-20">
       <Container maxWidth="5xl">
         <SubContainer className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="mb-12"
+          className="mb-8"
         >
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold font-heading leading-tight" style={{ color: "var(--foreground)" }}>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold font-heading leading-tight max-w-4xl mx-auto" style={{ color: "var(--foreground)" }}>
             I Transform Business Challenges Into Revenue-Generating Applications
-            <br />
-            <span className="text-4xl sm:text-5xl lg:text-6xl font-normal opacity-80 mt-4 block">
-              <TypingText texts={heroTexts} className="inline-block" />
-            </span>
           </h1>
+          <div className="mt-4 mb-6">
+            <p className="text-lg sm:text-xl font-normal opacity-70" style={{ color: "var(--text-secondary)" }}>
+              <TypingText texts={heroTexts} className="inline-block" />
+            </p>
+          </div>
         </motion.div>
         
         {/* Toptal Badge */}
@@ -113,7 +114,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="mb-16 flex justify-center"
+          className="mb-8 flex justify-center"
         >
           <a
             href={toptalUrl}
@@ -143,7 +144,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="text-lg sm:text-xl mb-12 leading-relaxed max-w-2xl mx-auto"
+          className="text-base sm:text-lg mb-8 leading-relaxed max-w-2xl mx-auto"
           style={{ color: "var(--text-secondary)" }}
         >
           {subtitle}
@@ -152,11 +153,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
-          className="mb-16"
+          className="mb-10"
         >
           <a
             href="#contact"
-            className="inline-block px-8 py-4 text-lg font-semibold text-white rounded-lg transition-all tracking-wide shadow-lg hover:shadow-xl hover:opacity-90"
+            className="inline-block px-6 py-3 text-base font-semibold text-white rounded-lg transition-all tracking-wide shadow-md hover:shadow-lg hover:opacity-90"
             style={{ backgroundColor: ACCENT_COLOR }}
           >
             Request a Project Estimate
@@ -166,7 +167,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="flex flex-wrap items-center justify-center gap-3 mb-12"
+          className="flex flex-wrap items-center justify-center gap-2 mb-8"
         >
           {techStack.map((tech) => (
             <span
