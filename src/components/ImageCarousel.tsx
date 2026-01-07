@@ -116,11 +116,10 @@ export default function ImageCarousel({ images, title }: ImageCarouselProps) {
                 key={image.id || index}
                 onClick={() => goToSlide(index)}
                 className={`shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                  index === currentIndex ? "ring-2 ring-offset-2" : "opacity-60 hover:opacity-100"
+                  index === currentIndex ? "ring-2 ring-offset-2 ring-[var(--accent)]" : "opacity-60 hover:opacity-100"
                 }`}
                 style={{
                   borderColor: index === currentIndex ? "var(--accent)" : "var(--border)",
-                  ringColor: "var(--accent)",
                 }}
                 aria-label={`Go to image ${index + 1}`}
               >
