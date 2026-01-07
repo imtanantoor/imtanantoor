@@ -28,6 +28,16 @@
   --text-muted: var(--gray-400);
   --badge-text: var(--gray-600);
   --accent: #386641;
+  
+  /* Success message colors (light mode) */
+  --success-bg: #F0FDF4;
+  --success-border: #22C55E;
+  --success-text: #166534;
+  
+  /* Error message colors (light mode) */
+  --error-bg: #FEF2F2;
+  --error-border: #EF4444;
+  --error-text: #991B1B;
 }
 
 .dark {
@@ -47,6 +57,16 @@
   --text-muted: #666666;
   --badge-text: #d1d1d1;
   --accent: #386641;
+  
+  /* Success message colors (dark mode) */
+  --success-bg: rgba(20, 83, 45, 0.3);
+  --success-border: #166534;
+  --success-text: #86efac;
+  
+  /* Error message colors (dark mode) */
+  --error-bg: rgba(127, 29, 29, 0.3);
+  --error-border: #991B1B;
+  --error-text: #fca5a5;
 }
 
 @theme inline {
@@ -234,4 +254,18 @@ a.group:hover {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Success message styling */
+.message-success {
+  background-color: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--success-text);
+}
+
+/* Error message styling */
+.message-error {
+  background-color: var(--error-bg);
+  border-color: var(--error-border);
+  color: var(--error-text);
 }

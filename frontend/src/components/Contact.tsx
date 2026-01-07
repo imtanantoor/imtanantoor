@@ -21,6 +21,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string>("");
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
@@ -61,11 +62,40 @@ export default function Contact() {
     }
 
     setSubmitting(true);
+    setSubmitError("");
 
-    // TODO: Implement form submission (Formspree, EmailJS, or API route)
-    // For now, just simulate submission
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle validation errors
+        if (response.status === 400 && data.details) {
+          const validationErrors: Record<string, string> = {};
+          data.details.forEach((error: string) => {
+            if (error.includes("Name")) validationErrors.name = error;
+            else if (error.includes("Email")) validationErrors.email = error;
+            else if (error.includes("Project type")) validationErrors.project_type = error;
+            else if (error.includes("Project stage")) validationErrors.project_stage = error;
+            else if (error.includes("Project goal")) validationErrors.project_goal = error;
+          });
+          setErrors(validationErrors);
+          setSubmitError("Please correct the errors above.");
+        } else {
+          setSubmitError(data.error || "Failed to submit. Please try again later.");
+        }
+        setSubmitting(false);
+        return;
+      }
+
+      // Success
       setSubmitted(true);
       setFormData({ 
         name: "", 
@@ -75,7 +105,12 @@ export default function Contact() {
         project_goal: "" 
       });
       setErrors({});
-    }, 1000);
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitError("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -153,8 +188,13 @@ export default function Contact() {
             className="space-y-4"
           >
             {submitted && (
-              <div className="p-3 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg text-green-800 dark:text-green-300 text-sm mb-4">
+              <div className="p-3 text-sm mb-4 font-medium rounded-lg border message-success">
                 Thank you! Your project details have been received. I&apos;ll review and respond within 24 hours.
+              </div>
+            )}
+            {submitError && (
+              <div className="p-3 text-sm mb-4 font-medium rounded-lg border message-error">
+                {submitError}
               </div>
             )}
             <div>
