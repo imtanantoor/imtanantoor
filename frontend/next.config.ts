@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "main.d34wwwwm8ixeus.amplifyapp.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "**.amazonaws.com",
         pathname: "/**",
       },
