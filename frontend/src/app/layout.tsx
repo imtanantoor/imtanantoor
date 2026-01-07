@@ -52,9 +52,8 @@ export default function RootLayout({
               (function() {
                 try {
                   const theme = localStorage.getItem('theme');
-                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const shouldBeDark = theme === 'dark' || (!theme && prefersDark);
-                  if (shouldBeDark) {
+                  // Only apply dark class if explicitly set in localStorage
+                  if (theme === 'dark') {
                     document.documentElement.classList.add('dark');
                   }
                 } catch (e) {}
