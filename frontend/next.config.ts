@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
         hostname: "**.amazonaws.com",
         pathname: "/**",
       },
+       // Strapi Cloud media (PRODUCTION)
+       {
+        protocol: "https",
+        hostname: "delicate-duck-17a40e310f.media.strapiapp.com",
+        pathname: "/**",
+      },
     ],
   },
 };
