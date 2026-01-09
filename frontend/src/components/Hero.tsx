@@ -19,10 +19,9 @@ const techStack = [
 
 // Customer-focused hero texts - short and concise
 const heroTexts = [
-  "I help achieve tech goals",
-  "I build apps that grow",
-  "I turn ideas into revenue",
-  "I create scalable solutions",
+  "Production-ready MVPs",
+  "Speed with structure",
+  "No tech babysitting",
 ];
 
 interface SiteSettings {
@@ -93,7 +92,7 @@ export default function Hero() {
 
   const subtitle =
     siteSettings?.heroSubtitle ||
-    "I transform your business challenges into powerful digital solutions. From concept to launch, I deliver apps that drive growth and exceed expectations.";
+    "For non-technical founders with a clear idea and timeline pressure. I build production-ready web and mobile MVPs that reduce your risk, protect your reputation, and get you to market fast. No technical hand-holding needed—just a structured process that delivers real products in 8–12 weeks.";
 
   const linkedinUrl =
     siteSettings?.socialLinks?.linkedin || "https://linkedin.com";
@@ -116,8 +115,7 @@ export default function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl font-semibold font-heading leading-tight max-w-4xl mx-auto"
               style={{ color: "var(--foreground)" }}
             >
-              I Transform Business Challenges Into Revenue-Generating
-              Applications
+              From Idea to Production-Ready MVP in 8–12 Weeks
             </h1>
             <div className="mt-4 mb-6">
               <p
@@ -190,7 +188,7 @@ export default function Hero() {
                 backgroundColor: ACCENT_COLOR,
               }}
             >
-              Request a Project Estimate
+              Discuss Your Idea
             </a>
           </motion.div>
           <motion.div

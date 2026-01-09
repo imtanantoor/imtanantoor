@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import ForNotFor from "@/components/ForNotFor";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Experience from "@/components/Experience";
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <ForNotFor />
       <Services />
       <Portfolio />
       <Experience />
