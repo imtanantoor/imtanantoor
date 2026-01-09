@@ -1,18 +1,26 @@
 ---
-alwaysApply: true
-description: "Landing page rules focused on conversion and risk reduction"
+description: "Defines ICP, positioning, and landing page messaging rules (Phase 1.5)"
+alwaysApply: false
 ---
-Instructions:
-- The landing page must clearly state:
-  - Who the service is for
-  - What outcome is delivered
-- Provide visible proof of execution (projects, experience, validation)
-- Guide users toward structured lead intake
 
-Hero section rules:
-- Include a static primary value proposition
-- Animated or rotating text is optional and secondary
-- Trust signals must appear above the fold
+# Landing Page Positioning Rules
 
-Avoid generic developer-centric language.
-Focus on outcomes and delivery confidence.
+Target ICP:
+- Non-technical founders
+- Idea-stage (no finalized design)
+- Want production-ready v1
+- Timeline: 8–12 weeks
+- Budget: $3k+ web, $5k+ mobile
+- Sensitive to reputation and time risk
+
+Landing page copy MUST:
+- Clearly state who this is for
+- Explicitly state who this is NOT for
+- Emphasize outcomes over implementation
+- Set expectations on timeline and seriousness
+- Use one dominant CTA
+
+Avoid:
+- Generic portfolio language
+- Developer-centric jargon
+- “For everyone” messaging

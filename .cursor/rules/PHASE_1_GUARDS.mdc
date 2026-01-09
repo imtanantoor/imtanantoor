@@ -1,0 +1,17 @@
+---
+description: "Protects Phase 1 guarantees (SEO, structure, Strapi safety) from regression"
+alwaysApply: true
+---
+
+# Phase 1 Guardrails
+
+Phase 1 guarantees MUST NOT be broken in any later phase.
+
+Do NOT:
+- Change semantic HTML structure
+- Alter metadata strategy
+- Modify Hero hierarchy
+- Reposition or dilute the primary CTA
+- Change Strapi from read-only usage
+
+If a suggestion risks SEO, trust, or intake stability → reject it.

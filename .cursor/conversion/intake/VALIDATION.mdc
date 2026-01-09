@@ -1,11 +1,13 @@
 ---
-alwaysApply: true
-description: "Validation rules for lead intake quality"
+description: "Ensures conversion clarity and prevents UX dilution"
+alwaysApply: false
 ---
-Instructions:
-- Validate all required fields client-side
-- Keep validation deterministic and simple
-- Avoid async or external dependencies
-- Display clear, human-readable error messages
 
-Validation exists to improve lead quality, not block submissions.
+# Conversion Rules
+
+The page must:
+- Have one clear conversion goal
+- Avoid distractions
+- Avoid navigation sprawl
+
+If a change increases cognitive load or decision friction → reject it.

@@ -1,19 +1,20 @@
 ---
-alwaysApply: true
-description: "Rules for call-to-action placement and wording"
+description: "Defines CTA intent and filtering behavior"
+alwaysApply: false
 ---
-Instructions:
-- Include at least one primary CTA above the fold
-- CTAs must lead to structured intake, not free-form contact
-- CTA text should communicate value, not mechanics
 
-Preferred CTA language:
-- “Get a Project Review”
+# CTA Rules
+
+Primary CTA must:
+- Signal seriousness
+- Filter low-intent leads
+- Align with the ICP
+
+CTA copy SHOULD:
+- Imply commitment
+- Avoid casual phrasing
+- Avoid multiple competing CTAs
+
+Examples of acceptable intent:
 - “Discuss Your Idea”
-- “Request a Project Estimate”
-
-Avoid:
-- “Contact Me”
-- “Send Message”
-
-CTAs exist to start qualification, not conversation.
+- “Validate Your MVP”

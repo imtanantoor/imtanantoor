@@ -1,21 +1,18 @@
 ---
-alwaysApply: true
-description: "Structured lead intake schema for future AI processing"
+description: "Defines structured intake fields and validation expectations"
+alwaysApply: false
 ---
-Instructions:
-- Lead capture must be structured and explicit
+
+# Intake Form Rules
 
 Required fields:
-- name (string)
-- email (string)
-- project_type (enum)
-- project_stage (enum)
-- project_goal (short text)
+- name
+- email
+- project_type
+- project_stage
+- project_goal
 
 Rules:
-- Do not use open-ended “message” fields
-- Use semantically clear field names
-- Data must be easy to map to PRDs and feature lists
-- The form must function without AI or automation
-
-Assume all captured data will later be processed programmatically.
+- Client-side validation only
+- No persistence beyond email (until Phase 2)
+- Field structure must remain stable for future AI use

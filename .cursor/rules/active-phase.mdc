@@ -1,0 +1,21 @@
+---
+description: "Declares the currently active phase and constrains Agent behavior accordingly"
+alwaysApply: true
+---
+
+# ACTIVE PHASE — Phase 1.5 (ICP & Positioning)
+
+The project is currently in **Phase 1.5**.
+
+Allowed focus:
+- ICP clarification
+- Landing page positioning
+- Copy refinement only
+
+Forbidden:
+- Infrastructure changes
+- Database or persistence
+- API refactors
+- Automation or AI systems
+
+If a request goes beyond copy or positioning, Agent MUST stop and ask.
